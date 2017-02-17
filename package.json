@@ -1,0 +1,38 @@
+{
+  "name": "pco-schedule-swapper",
+  "version": "1.0.0",
+  "description": "PCO Schedule Swapper",
+  "main": "server.js",
+  "scripts": {
+    "start": "sls offline -H node_modules/openssl-self-signed-certificate -P 3001",
+    "test": "eslint --ignore-path .gitignore . && mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hbcwr/pco-schedule-swapper.git"
+  },
+  "keywords": [
+    "PCO"
+  ],
+  "author": "hbcwr",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/hbcwr/pco-schedule-swapper/issues"
+  },
+  "homepage": "https://github.com/hbcwr/pco-schedule-swapper#readme",
+  "dependencies": {
+    "ejs": "^2.5.5",
+    "express": "^4.14.1",
+    "serverless-http": "^1.3.0"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "eslint": "^3.15.0",
+    "mocha": "^3.2.0",
+    "openssl-self-signed-certificate": "^1.1.6",
+    "serverless-dynamodb-local": "^0.2.18",
+    "serverless-offline": "^3.8.3",
+    "serverless-plugin-include-dependencies": "^1.2.0",
+    "supertest": "^3.0.0"
+  }
+}
