@@ -3,37 +3,36 @@ service: pco-schedule-swapper
 provider:
   name: aws
   runtime: nodejs4.3
+  stage: dev
 
 plugins:
-  - serverless-dynamodb-local
-  - serverless-offline
   - serverless-plugin-include-dependencies
 
 custom:
-  dynamodb:
-    start:
-      port: 8000
-      inMemory: true
+  sessionsTableName: ${self:service}${opt:stage, self:provider.stage}-sessionsTable
 
 resources:
   Resources:
-    sessionsTable:
+    SessionsTable:
       Type: AWS::DynamoDB::Table
       Properties:
-        TableName: sessionsTable
+        TableName: ${self:custom.sessionsTableName}
         AttributeDefinitions:
-          - AttributeName: session
+          - AttributeName: id
             AttributeType: S
         KeySchema:
-          - AttributeName: session
+          - AttributeName: id
             KeyType: HASH
         ProvisionedThroughput:
           ReadCapacityUnits: 1
           WriteCapacityUnits: 1
 
 functions:
-  hello:
-    handler: src/server.handler 
+  main:
+    handler: src/server.handler
+    timeout: 30
+    environment:
+      SESSIONS_TABLE: ${self:custom.sessionsTableName}
     events:
       - http:
           path: /
