@@ -9,7 +9,7 @@ plugins:
   - serverless-plugin-include-dependencies
 
 custom:
-  sessionsTableName: ${self:service}${opt:stage, self:provider.stage}-sessionsTable
+  sessionsTableName: ${self:service}-${opt:stage, self:provider.stage}-sessionsTable
 
 resources:
   Resources:
