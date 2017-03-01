@@ -9,6 +9,7 @@ plugins:
   - serverless-plugin-include-dependencies
 
 custom:
+  ENV: ${file(config.js):env}
   sessionsTableName: ${self:service}-${opt:stage, self:provider.stage}-sessionsTable
 
 resources:
@@ -32,6 +33,7 @@ functions:
     handler: src/server.handler
     timeout: 30
     environment:
+      SESSION_SECRET: ${self:custom.ENV.SESSION_SECRET}
       SESSIONS_TABLE: ${self:custom.sessionsTableName}
     events:
       - http:

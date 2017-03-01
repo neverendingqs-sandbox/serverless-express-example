@@ -45,3 +45,4 @@ tmpdirs-serverless
 .eslintcache
 
 .serverless
+.env
