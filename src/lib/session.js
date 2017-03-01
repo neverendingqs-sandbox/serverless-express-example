@@ -1,3 +1,7 @@
+if(process.env.NODE_ENV === 'production' && typeof process.env.SESSION_SECRET === 'undefined') {
+  throw('Must provide process.env.SESSION_SECRET in production.');
+}
+
 const session = require('express-session');
 const DynamoDBStore = require('connect-dynamodb')({ session: session });
 
