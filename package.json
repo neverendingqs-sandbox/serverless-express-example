@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "nodemon server-local",
-    "test": "eslint --ignore-path .gitignore . && mocha && sls deploy --noDeploy"
+    "test": "eslint --ignore-path .gitignore . && mocha --recursive && sls deploy --noDeploy"
   },
   "repository": {
     "type": "git",
@@ -22,17 +22,22 @@
   "homepage": "https://github.com/hbcwr/pco-schedule-swapper#readme",
   "dependencies": {
     "aws-serverless-express": "^2.1.3",
+    "body-parser": "^1.17.0",
     "connect-dynamodb": "^1.0.9",
+    "csprng": "^0.1.2",
+    "csurf": "^1.9.0",
     "ejs": "^2.5.5",
     "express": "^4.14.1",
     "express-session": "^1.15.1",
-    "serverless-http": "^1.3.0"
+    "lodash": "^4.17.4",
+    "superagent": "^3.5.0"
   },
   "devDependencies": {
     "chai": "^3.5.0",
     "dotenv": "^4.0.0",
     "eslint": "^3.16.1",
     "mocha": "^3.2.0",
+    "nock": "^9.0.9",
     "nodemon": "^1.11.0",
     "openssl-self-signed-certificate": "^1.1.6",
     "serverless": "1.8.0",
