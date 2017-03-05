@@ -9,8 +9,22 @@
   </head>
   <body>
     <div class="container">
-      <h1>Hello World</h1>
-      <pre><%= sessionId %></pre>
+      <h1>Planning Center Online Schedule Swapper</h1>
+      <% if(!data){ %>
+        <div id="error-message" class="alert alert-danger">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            "An error has occurred. Please try again."
+        </div>
+      <% } %>
+      <pre><%= data %></pre>
+      <form action="oauth" method="post">
+          <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+          <div class="row">
+            <div class="form-group col-md-12">
+              <button class="btn btn-primary">Log Into Planning Center</button>
+            </div>
+          </div>
+      </form>
     </div>
   </body>
 </html>
