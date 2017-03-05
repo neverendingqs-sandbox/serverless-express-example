@@ -25,6 +25,14 @@
             </div>
           </div>
       </form>
+      <form action="logout" method="post">
+          <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+          <div class="row">
+            <div class="form-group col-md-12">
+              <button class="btn btn-danger">Log Out</button>
+            </div>
+          </div>
+      </form>
     </div>
   </body>
 </html>
