@@ -6,7 +6,8 @@ const router = express.Router();
 const rand = require('csprng');
 const request = require('superagent');
 
-const getRedirectUri = require('../lib/utils').getRedirectUri;
+const getHostUri = require('../lib/utils').getHostUri;
+const getRedirectUri = req => getHostUri(req)  + '/oauth/callback';
 const viewModel = require('../views/view-model');
 
 const pcoEndpoint = 'https://api.planningcenteronline.com';

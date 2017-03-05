@@ -2,7 +2,7 @@
 const _ = require('lodash');
 
 module.exports = {
-  getRedirectUri: (req) => {
+  getHostUri: (req) => {
     const protocol = req.headers['x-forwarded-proto'] || req.protocol;
 
     let stage = '';
@@ -11,6 +11,6 @@ module.exports = {
       stage = '/' + _.get(event, 'requestContext.stage');
     }
 
-    return protocol + '://' + req.headers.host + stage + '/oauth/callback';
+    return protocol + '://' + req.headers.host + stage;
   }
 };
