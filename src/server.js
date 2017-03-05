@@ -1,5 +1,6 @@
 'use strict';
 const path = require('path');
+const getHostUri = require('./lib/utils').getHostUri;
 const viewModel = require('./views/view-model');
 
 const express = require('express');
@@ -28,7 +29,7 @@ app.post('/logout', (req, res) =>{
       res.render('index', viewModel.index(req, null));
       return;
     }
-    res.redirect('/');
+    res.redirect(getHostUri(req));
   });
 });
 

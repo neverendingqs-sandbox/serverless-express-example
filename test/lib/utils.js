@@ -4,10 +4,10 @@ const assert = require('chai').assert;
 const utils = require('../../src/lib/utils');
 
 describe('utils', () => {
-  describe('getRedirectUri()', () => {
-    const getRedirectUri = utils.getRedirectUri;
+  describe('getHostUri()', () => {
+    const getHostUri = utils.getHostUri;
 
-    it('creates redirect URI when no special headers are present', (done) => {
+    it('gets URI when no special headers are present', (done) => {
       const req = {
         headers: {
           host: 'example.com'
@@ -16,8 +16,8 @@ describe('utils', () => {
       };
 
       assert.equal(
-        getRedirectUri(req),
-        'http://example.com/oauth/callback'
+        getHostUri(req),
+        'http://example.com'
       );
 
       done();
@@ -33,8 +33,8 @@ describe('utils', () => {
       };
 
       assert.equal(
-        getRedirectUri(req),
-        'https://example.com/oauth/callback'
+        getHostUri(req),
+        'https://example.com'
       );
 
       done();
@@ -52,8 +52,8 @@ describe('utils', () => {
       };
 
       assert.equal(
-        getRedirectUri(req),
-        'https://example.com/' + stage + '/oauth/callback'
+        getHostUri(req),
+        'https://example.com/' + stage
       );
 
       done();
