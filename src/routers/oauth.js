@@ -51,7 +51,7 @@ router.get('/callback', (req, res) => {
       // TODO: do we want to save the refresh token as well?
       // TODO: we probably want to save the expiry of the access token for downstream logic
       req.session.access_token = postResponse.body.access_token;
-      res.redirect('/schedule');
+      res.redirect(getHostUri(req) + '/schedule');
     })
     .catch(err => {
       console.error(_.get(err, 'response.body', err));
