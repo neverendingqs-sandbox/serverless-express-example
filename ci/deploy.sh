@@ -12,4 +12,5 @@ if [[ ${BRANCH} != 'master' ]] || [[ ${TRAVIS_PULL_REQUEST} != 'false' ]]; then
 fi
 
 echo "Deploying to production"
+npm i -g serverless@1.8
 sls deploy --stage 'prod' --region $AWS_REGION
