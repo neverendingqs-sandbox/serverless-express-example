@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "nodemon server-local",
-    "test": "eslint --ignore-path .gitignore . && mocha --recursive && sls deploy --noDeploy"
+    "test": "mocha --recursive && eslint --ignore-path .gitignore . && sls deploy --noDeploy"
   },
   "repository": {
     "type": "git",

@@ -20,7 +20,7 @@ router.post('/', (req, res) => {
     + '?response_type=code'
     + '&client_id=' + process.env.PCO_CLIENT_ID
     + '&redirect_uri=' + getRedirectUri(req)
-    + '&scope=people'
+    + '&scope=people services'
     + '&state=' + state;
 
   req.session.state = state;
