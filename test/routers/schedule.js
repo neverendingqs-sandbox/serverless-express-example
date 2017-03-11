@@ -17,6 +17,7 @@ beforeEach(function() {
 afterEach(function() {
   if(!nock.isDone()) {
     this.test.error(new Error('Not all nock interceptors were used!'));
+    nock.cleanAll();
   }
   session = {};
 });
