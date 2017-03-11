@@ -1,38 +1,25 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <!-- bootstrap -->
-    <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/flatly/bootstrap.min.css" rel="stylesheet" integrity="sha384-XYCjB+hFAjSbgf9yKUgbysEjaVLOXhCgATTEBpCqT1R3jvG5LGRAK5ZIyRbH5vpX" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha256-Sk3nkD6mLTMOF0EOpNtsIry+s1CsaqQC1rVLTAy+0yc= sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
-    <title>Planning Center Schedule Swapper</title>
-  </head>
-  <body>
-    <div class="container">
-      <h1>Planning Center Online Schedule Swapper</h1>
-      <% if(!data){ %>
-        <div id="error-message" class="alert alert-danger">
-            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-            "An error has occurred. Please try again."
-        </div>
-      <% } %>
-      <pre><%= data %></pre>
-      <form action="oauth" method="post">
-          <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-          <div class="row">
-            <div class="form-group col-md-12">
-              <button class="btn btn-primary">Log Into Planning Center</button>
-            </div>
-          </div>
-      </form>
-      <form action="logout" method="post">
-          <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-          <div class="row">
-            <div class="form-group col-md-12">
-              <button class="btn btn-danger">Log Out</button>
-            </div>
-          </div>
-      </form>
+<%- include partials/header.ejs %>
+  <% if(!data){ %>
+    <div id="error-message" class="alert alert-danger">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        "An error has occurred. Please try again."
     </div>
-  </body>
-</html>
+  <% } %>
+  <pre><%= data %></pre>
+  <form action="oauth" method="post">
+      <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+      <div class="row">
+        <div class="form-group col-md-12">
+          <button class="btn btn-primary">Log Into Planning Center</button>
+        </div>
+      </div>
+  </form>
+  <form action="logout" method="post">
+      <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+      <div class="row">
+        <div class="form-group col-md-12">
+          <button class="btn btn-danger">Log Out</button>
+        </div>
+      </div>
+  </form>
+<%- include partials/footer.ejs %>
