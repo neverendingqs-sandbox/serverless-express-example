@@ -9,18 +9,21 @@ const schedule = require('../../src/routers/schedule');
 var app;
 var session = {};
 
-beforeEach(() => {
+beforeEach(function() {
   app = utils.createAppForTesting(session);
   app.use('/schedule', schedule);
 });
 
-afterEach(() => {
+afterEach(function() {
+  if(!nock.isDone()) {
+    this.test.error(new Error('Not all nock interceptors were used!'));
+  }
   session = {};
 });
 
-describe('GET /schedule', () => {
+describe('GET /schedule', function() {
   // TODO: update to get schedule instead
-  it('calls whoami', () => {
+  it('calls whoami', function() {
     const firstName = 'f4369141-665e-432a-ad76-3a08a296db4e';
     session.access_token = 'cd22f988-afe4-47eb-9025-afaf313487c8';
 

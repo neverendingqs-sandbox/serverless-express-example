@@ -10,19 +10,24 @@ const oauth = require('../../src/routers/oauth');
 var app;
 var session = {};
 
-before(() => require('dotenv').config({ path: path.join(__dirname, '../.test-env') }));
+before(function() {
+  require('dotenv').config({ path: path.join(__dirname, '../.test-env') });
+});
 
-beforeEach(() => {
+beforeEach(function() {
   app = utils.createAppForTesting(session);
   app.use('/oauth', oauth);
 });
 
-afterEach(() => {
+afterEach(function() {
+  if(!nock.isDone()) {
+    this.test.error(new Error('Not all nock interceptors were used!'));
+  }
   session = {};
 });
 
-describe('POST /oauth', () => {
-  it('redirects to PCO', () => {
+describe('POST /oauth', function() {
+  it('redirects to PCO', function() {
     return request(app)
       .post('/oauth')
       .expect(302)
@@ -37,15 +42,15 @@ describe('POST /oauth', () => {
   });
 });
 
-describe('GET /oauth/callback', () => {
-  it('error if session has no state', () => {
+describe('GET /oauth/callback', function() {
+  it('error if session has no state', function() {
     return request(app)
       .get('/oauth/callback?state=randomquerystate')
       .expect(200)
       .then(res => assert.include(res.text, 'error'));
   });
 
-  it('error if query has no state', () => {
+  it('error if query has no state', function() {
     session.state = 'randomsessionstate';
     return request(app)
       .get('/oauth/callback')
@@ -56,8 +61,8 @@ describe('GET /oauth/callback', () => {
       });
   });
 
-  describe('calls PCO for access token', () => {
-    it('stores token response into session and redirects to /schedule', () => {
+  describe('calls PCO for access token', function() {
+    it('stores token response into session and redirects to /schedule', function() {
       const access_token = '264800d0-b36c-4a3e-b410-59936cd48f30';
       const code = '2214a338-9f85-418b-8cda-fff16c16d119';
       const state = 'd4b7c779-b622-4b59-a8ef-4412f0dd12a0';
@@ -89,7 +94,7 @@ describe('GET /oauth/callback', () => {
     });
 
     [400, 401, 403].forEach(statusCode => {
-      it('handles ' + statusCode + ' from PCO token endpoint gracefully', () => {
+      it('handles ' + statusCode + ' from PCO token endpoint gracefully', function() {
         const code = '2214a338-9f85-418b-8cda-fff16c16d119';
         const state = 'd4b7c779-b622-4b59-a8ef-4412f0dd12a0';
 
