@@ -15,7 +15,7 @@ router.get('/', (req, res) => {
     .then(getResponse => {
       // TODO: new view that shows the schedule
       const data = _.get(getResponse.body, 'data.attributes.first_name', JSON.stringify(getResponse.body));
-      res.render('index', viewModel.index(req, data));
+      res.render('schedule', viewModel.schedule(req, data));
     })
     .catch(err => {
       console.error(_.get(err, 'response.body', err));

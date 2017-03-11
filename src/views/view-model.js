@@ -1,4 +1,11 @@
-const index = (req, data) => {
+const index = function(req, data) {
+  return {
+    csrfToken: req.csrfToken(),
+    data: data
+  };
+};
+
+const schedule = function(req, data) {
   return {
     csrfToken: req.csrfToken(),
     data: data
@@ -6,5 +13,6 @@ const index = (req, data) => {
 };
 
 module.exports = {
-  index: index
+  index: index,
+  schedule: schedule
 };
