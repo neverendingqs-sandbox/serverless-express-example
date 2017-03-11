@@ -3,11 +3,11 @@ const assert = require('chai').assert;
 
 const utils = require('../../src/lib/utils');
 
-describe('utils', () => {
-  describe('getHostUri()', () => {
+describe('utils', function() {
+  describe('getHostUri()', function() {
     const getHostUri = utils.getHostUri;
 
-    it('gets URI when no special headers are present', function(done) {
+    it('gets URI when no special headers are present', function() {
       const req = {
         headers: {
           host: 'example.com'
@@ -19,11 +19,9 @@ describe('utils', () => {
         getHostUri(req),
         'http://example.com'
       );
-
-      done();
     });
 
-    it('uses "x-forwarded-proto" if present', function(done) {
+    it('uses "x-forwarded-proto" if present', function() {
       const req = {
         headers: {
           host: 'example.com',
@@ -36,8 +34,6 @@ describe('utils', () => {
         getHostUri(req),
         'https://example.com'
       );
-
-      done();
     });
   });
 });

@@ -3,8 +3,8 @@ const request = require('supertest');
 
 const app = require('../src/server');
 
-describe('GET /', () => {
-  it('returns main page', () => {
+describe('GET /', function() {
+  it('returns main page', function() {
     request(app)
       .get('/')
       .expect(200)
