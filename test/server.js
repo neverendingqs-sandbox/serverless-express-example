@@ -1,13 +1,22 @@
-const assert = require('chai').assert;
 const request = require('supertest');
-
 const app = require('../src/server');
 
-describe('GET /', function() {
-  it('returns main page', function() {
+describe('routes are loaded successfully', function() {
+  it('GET /', function() {
     request(app)
       .get('/')
-      .expect(200)
-      .then(res => assert.include(res.text, 'Swapper'));
+      .expect(200);
+  });
+
+  it('GET /callback', function() {
+    request(app)
+      .get('/oauth/callback')
+      .expect(200);
+  });
+
+  it('GET /schedule', function() {
+    request(app)
+      .get('/schedule')
+      .expect(200);
   });
 });
