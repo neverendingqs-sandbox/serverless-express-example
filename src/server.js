@@ -1,7 +1,5 @@
 'use strict';
 const path = require('path');
-const getHostUri = require('./lib/utils').getHostUri;
-const viewModel = require('./views/view-model');
 
 const express = require('express');
 // causes 'serverless-plugin-include-dependencies' to include ejs
@@ -18,20 +16,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(require('./lib/session'));
 app.use(csrf());
 
-app.get('/', (req, res) => res.render('index', viewModel.index(req, req.session.id)));
+app.use('/', require('./routers/root'));
 app.use('/oauth', require('./routers/oauth'));
 // TODO: middleware to check if a valid access token is available
 app.use('/schedule', require('./routers/schedule'));
-app.post('/logout', (req, res) =>{
-  req.session.destroy(err => {
-    if(err) {
-      console.error(err);
-      res.render('index', viewModel.index(req, null));
-      return;
-    }
-    res.redirect(getHostUri(req));
-  });
-});
 
 module.exports = app;
 module.exports.handler = require('./lib/serverless-handler')(app);
