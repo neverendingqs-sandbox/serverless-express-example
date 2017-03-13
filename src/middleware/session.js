@@ -6,7 +6,7 @@ const session = require('express-session');
 const DynamoDBStore = require('connect-dynamodb')({ session: session });
 
 const sessionOptions = {
-  reapInterval: 86400000,  // 1 day
+  cookie: { maxAge: 7200000 },
   resave: false,
   saveUninitialized: false,
   secret: process.env.SESSION_SECRET || 'VERY INSECURE SECRET'

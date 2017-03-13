@@ -43,6 +43,7 @@ resources:
         Roles:
           - Ref: IamRoleLambdaExecution
     MainLogGroup:
+      Type: AWS::Logs::LogGroup
       Properties:
         RetentionInDays: "30"
 
