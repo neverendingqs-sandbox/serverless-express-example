@@ -5,7 +5,6 @@ const path = require('path');
 const request = require('supertest');
 
 const utils = require('../utils');
-const oauth = require('../../src/routers/oauth');
 
 var app;
 var session = {};
@@ -16,7 +15,6 @@ before(function() {
 
 beforeEach(function() {
   app = utils.createAppForTesting(session);
-  app.use('/oauth', oauth);
 });
 
 afterEach(function() {

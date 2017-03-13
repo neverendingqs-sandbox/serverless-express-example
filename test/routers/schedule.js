@@ -4,7 +4,6 @@ const nock = require('nock');
 const request = require('supertest');
 
 const utils = require('../utils');
-const schedule = require('../../src/routers/schedule');
 const pcoEndpoint = 'https://api.planningcenteronline.com';
 
 var app;
@@ -12,7 +11,6 @@ var session = {};
 
 beforeEach(function() {
   app = utils.createAppForTesting(session);
-  app.use('/schedule', schedule);
 });
 
 afterEach(function() {
