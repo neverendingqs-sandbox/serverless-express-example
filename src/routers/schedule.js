@@ -23,15 +23,12 @@ const extractUserId = function(body) {
   return Promise.resolve(userId);
 };
 
-router.get('/', (req, res) => {
+router.get('/', (req, res, next) => {
   requestGet(`${pcoEndpoint}/people/v2/me`, req.session.access_token)
     .then(peopleRes => extractUserId(peopleRes.body))
     .then(userId => requestGet(`${pcoEndpoint}/services/v2/people/${userId}/schedules`, req.session.access_token))
     .then(scheduleRes => res.render('schedule', viewModel.schedule(req, JSON.stringify(scheduleRes.body))))
-    .catch(err => {
-      console.error(_.get(err, 'response.body', err));
-      res.render('index', viewModel.index(req, null));
-    });
+    .catch(next);
 });
 
 module.exports = router;

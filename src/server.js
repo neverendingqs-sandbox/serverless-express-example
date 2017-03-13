@@ -13,13 +13,14 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '/views'));
 
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(require('./lib/session'));
+app.use(require('./middleware/session'));
 app.use(csrf());
 
 app.use('/', require('./routers/root'));
 app.use('/oauth', require('./routers/oauth'));
 // TODO: middleware to check if a valid access token is available
 app.use('/schedule', require('./routers/schedule'));
+app.use(require('./middleware/error'));
 
 module.exports = app;
 module.exports.handler = require('./lib/serverless-handler')(app);

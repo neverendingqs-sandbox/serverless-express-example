@@ -1,5 +1,4 @@
 'use strict';
-const _ = require('lodash');
 const express = require('express');
 const router = express.Router();
 
@@ -27,7 +26,7 @@ router.post('/', (req, res) => {
   res.redirect(redirectUrl);
 });
 
-router.get('/callback', (req, res) => {
+router.get('/callback', (req, res, next) => {
   if(typeof req.session.state === 'undefined' || req.query.state !== req.session.state) {
     console.warn('Refusing to serve request due to missing or mis-matched state.');
     delete req.session.state;
@@ -53,10 +52,7 @@ router.get('/callback', (req, res) => {
       req.session.access_token = postResponse.body.access_token;
       res.redirect(getHostUri(req) + '/schedule');
     })
-    .catch(err => {
-      console.error(_.get(err, 'response.body', err));
-      res.render('index', viewModel.index(req, null));
-    });
+    .catch(next);
 });
 
 module.exports = router;
