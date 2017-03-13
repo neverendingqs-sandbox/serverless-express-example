@@ -13,7 +13,7 @@ module.exports = {
           next();
         };
       },
-      './lib/session': (req, res, next) => {
+      './middleware/session': (req, res, next) => {
         req.session = session;
         next();
       }
