@@ -12,4 +12,4 @@ if [[ ${BRANCH} != 'master' ]] || [[ ${TRAVIS_PULL_REQUEST} != 'false' ]]; then
 fi
 
 echo "Deploying to production"
-npm run sls deploy --stage 'prod' --region $AWS_REGION
+npm run deploy:prod
