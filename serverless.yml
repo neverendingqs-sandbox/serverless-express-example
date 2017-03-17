@@ -5,6 +5,10 @@ provider:
   runtime: nodejs4.3
   stage: dev
 
+package:
+  exclude:
+    - node_modules/**/aws-sdk/**
+
 plugins:
   - serverless-plugin-include-dependencies
 
