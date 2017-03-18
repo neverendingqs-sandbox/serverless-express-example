@@ -5,10 +5,14 @@ const index = function(req, data) {
   };
 };
 
-const schedule = function(req, data) {
+const schedule = function(req, schedules) {
+  if(!(schedules instanceof Array)) {
+    throw new Error(`schedules should be of type array but is type ${typeof schedules}`);
+  }
   return {
     csrfToken: req.csrfToken(),
-    data: data
+    // TODO: validate schedule data looks right
+    schedules: schedules
   };
 };
 

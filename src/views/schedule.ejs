@@ -1,3 +1,13 @@
 <%- include partials/header.ejs %>
-  <pre><%= data %></pre>
+  <% for(var i=0; i < schedules.length; i++) { %>
+    <form action="/schedule/request" method="post" onsubmit="return confirm('Request a swap for <%= schedules[i].attributes.sort_date %>?');">
+      <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+      <input type="hidden" name="schedule-id" value="<%= schedules[i].id %>">
+      <label><%= schedules[i].attributes.service_type_name %></label>
+      <label><%= schedules[i].attributes.team_name %></label>
+      <label><%= schedules[i].attributes.team_position_name %></label>
+      <label><%= schedules[i].attributes.sort_date %></label>
+      <button class="btn btn-primary">Swap</button>
+    </form>
+  <% } %>
 <%- include partials/footer.ejs %>
