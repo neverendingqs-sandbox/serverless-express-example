@@ -24,8 +24,16 @@ afterEach(function() {
 describe('GET /schedule', function() {
   it('calls whoami and schedule', function() {
     const userId = 'f4369141-665e-432a-ad76-3a08a296db4e';
-    // TODO: update schedule body to include fields we'll use
-    const scheduleBody = '9da9a2e1-111f-410b-a134-c054ba5f9c55';
+    // TODO: update validation to show converted values (e.g. human readable date)
+    const scheduleId = '9da9a2e1-111f-410b-a134-c054ba5f9c55';
+    const scheduleData = [{
+      id: scheduleId,
+      attributes: {
+        team_name: 'team_name',
+        team_position_name: 'team_position_name',
+        sort_date: 'sort_date'
+      }
+    }];
     session.access_token = 'cd22f988-afe4-47eb-9025-afaf313487c8';
 
     nock(pcoEndpoint)
@@ -36,11 +44,11 @@ describe('GET /schedule', function() {
     nock(pcoEndpoint)
       .get(`/services/v2/people/${userId}/schedules`)
       .matchHeader('Authorization', val => val === 'Bearer ' + session.access_token)
-      .reply(200, { scheduleBody: scheduleBody });
+      .reply(200, { data: scheduleData });
 
     return request(app)
       .get('/schedule')
       .expect(200)
-      .then(res => assert.include(res.text, scheduleBody));
+      .then(res => assert.include(res.text, scheduleId));
   });
 });

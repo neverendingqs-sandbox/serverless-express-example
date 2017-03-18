@@ -27,8 +27,13 @@ router.get('/', (req, res, next) => {
   requestGet(`${pcoEndpoint}/people/v2/me`, req.session.access_token)
     .then(peopleRes => extractUserId(peopleRes.body))
     .then(userId => requestGet(`${pcoEndpoint}/services/v2/people/${userId}/schedules`, req.session.access_token))
-    .then(scheduleRes => res.render('schedule', viewModel.schedule(req, JSON.stringify(scheduleRes.body))))
+    .then(scheduleRes => res.render('schedule', viewModel.schedule(req, _.get(scheduleRes, 'body.data', []))))
     .catch(next);
+});
+
+router.post('/request', (req, res) => {
+  // TODO: write request to DynamoDB and fire an email
+  res.redirect('/');
 });
 
 module.exports = router;
