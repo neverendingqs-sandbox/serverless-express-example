@@ -4,6 +4,7 @@
   "description": "PCO Schedule Swapper",
   "main": "server.js",
   "scripts": {
+    "deploy:dev": "sls deploy",
     "deploy:prod": "sls deploy --stage 'prod' --region $AWS_REGION",
     "start": "nodemon server-local",
     "test": "mocha --recursive && eslint --ignore-path .gitignore . && sls deploy --noDeploy"
