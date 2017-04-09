@@ -14,4 +14,3 @@ env:
 
 script:
 - npm test
-- ci/deploy.sh
