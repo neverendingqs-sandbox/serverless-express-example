@@ -1,4 +1,4 @@
-service: pco-schedule-swapper
+service: serverless-express-example
 
 provider:
   name: aws
@@ -58,8 +58,6 @@ functions:
     environment:
       SESSION_SECRET: ${self:custom.ENV.SESSION_SECRET}
       SESSIONS_TABLE: ${self:custom.sessionsTableName}
-      PCO_CLIENT_ID: ${self:custom.ENV.PCO_CLIENT_ID}
-      PCO_CLIENT_SECRET: ${self:custom.ENV.PCO_CLIENT_SECRET}
     events:
       - http:
           path: /

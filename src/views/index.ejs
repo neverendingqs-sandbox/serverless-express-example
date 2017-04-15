@@ -1,17 +1,8 @@
-<%- include partials/header.ejs %>
-  <% if(!data){ %>
-    <div id="error-message" class="alert alert-danger">
-        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-        "An error has occurred. Please try again."
-    </div>
-  <% } %>
-  <pre><%= data %></pre>
-  <form action="oauth" method="post">
-      <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-      <div class="row">
-        <div class="form-group col-md-12">
-          <button class="btn btn-primary">Log Into Planning Center</button>
-        </div>
-      </div>
-  </form>
-<%- include partials/footer.ejs %>
+<!doctype html>
+<html lang="en">
+  <body>
+    <h1>Session ID:</h1>
+    <pre><%= data %></pre>
+  </body>
+</html>
+
