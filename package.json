@@ -4,10 +4,12 @@
   "description": "Serverless framework example with express.js.",
   "main": "server.js",
   "scripts": {
-    "deploy:prod": "sls deploy --stage 'prod' --region $AWS_REGION",
-    "deploy:dev": "sls deploy",
+    "deploy": "sls deploy",
+    "lint": "eslint --ignore-path .gitignore .",
+    "sls": "sls",
     "start": "nodemon server-local",
-    "test": "mocha --recursive && eslint --ignore-path .gitignore . && sls deploy --noDeploy"
+    "test": "mocha --recursive && sls deploy --noDeploy",
+    "posttest": "npm run lint"
   },
   "repository": {
     "type": "git",
@@ -25,7 +27,7 @@
   "homepage": "https://github.com/neverendingqs-sandbox/serverless-express-example#readme",
   "dependencies": {
     "body-parser": "^1.17.0",
-    "connect-dynamodb": "^1.0.9",
+    "connect-dynamodb": "^2.0.1",
     "csurf": "^1.9.0",
     "ejs": "^2.5.5",
     "express": "^4.14.1",
@@ -33,16 +35,16 @@
     "serverless-http": "^1.4.2"
   },
   "devDependencies": {
-    "chai": "^3.5.0",
-    "dotenv": "^4.0.0",
-    "eslint": "^3.16.1",
-    "eslint-plugin-mocha": "^4.8.0",
-    "mocha": "^3.2.0",
+    "chai": "^4.1.2",
+    "dotenv": "^6.0.0",
+    "eslint": "^5.3.0",
+    "eslint-plugin-mocha": "^5.1.0",
+    "mocha": "^5.2.0",
     "nodemon": "^1.11.0",
     "openssl-self-signed-certificate": "^1.1.6",
-    "proxyquire": "^1.7.11",
-    "serverless": "1.10.1",
-    "serverless-plugin-include-dependencies": "^2.0.0",
+    "proxyquire": "^2.0.1",
+    "serverless": "1.30.0",
+    "serverless-plugin-include-dependencies": "^3.1.1",
     "supertest": "^3.0.0"
   }
 }
