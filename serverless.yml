@@ -32,6 +32,9 @@ resources:
         ProvisionedThroughput:
           ReadCapacityUnits: 1
           WriteCapacityUnits: 1
+        TimeToLiveSpecification:
+          AttributeName: expires
+          Enabled: true
     SessionsTableIamPolicy:
       Type: AWS::IAM::Policy
       DependsOn: SessionsTable
