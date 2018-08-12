@@ -1,5 +1,3 @@
-require('dotenv').config();
-
 const https = require('https');
 const selfSigned = require('openssl-self-signed-certificate');
 
